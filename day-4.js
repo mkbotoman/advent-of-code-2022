@@ -9,8 +9,8 @@ function prepareData(array) {
         firstSplit.push(chunk)
     }
     for (let i=0; i<firstSplit.length ; i++) {
-        let first = parseInt(firstSplit[i][0].split("-"))
-        let second = parseInt(firstSplit[i][1].split("-"))
+        let first = firstSplit[i][0].split("-")
+        let second = firstSplit[i][1].split("-")
         secondSplit.push([first,second])
     }
     return secondSplit
@@ -18,6 +18,14 @@ function prepareData(array) {
 
 function findOutput(array) {
     let prepared = prepareData(array)
-    console.log(prepared)
+    let numBetween = 0
+    for (let i=0; i<prepared.length ; i++) {
+        if((parseInt(prepared[i][0][0]) == parseInt(prepared[i][1][0])) || parseInt(prepared[i][0][0]) == parseInt(prepared[i][1][1]) || parseInt(prepared[i][0][1]) == parseInt(prepared[i][1][0]) || parseInt(prepared[i][0][1]) == parseInt(prepared[i][1][1])) numBetween++
+        else if((parseInt(prepared[i][0][0]) < parseInt(prepared[i][1][0])) && parseInt(prepared[i][0][1]) > parseInt(prepared[i][1][0])) numBetween++
+        else if((parseInt(prepared[i][0][0]) < parseInt(prepared[i][1][1])) && parseInt(prepared[i][0][1]) > parseInt(prepared[i][1][1])) numBetween++
+        else if((parseInt(prepared[i][1][0]) < parseInt(prepared[i][0][0])) && parseInt(prepared[i][1][1]) > parseInt(prepared[i][0][0])) numBetween++
+        else if((parseInt(prepared[i][1][0]) < parseInt(prepared[i][0][1])) && parseInt(prepared[i][1][1]) > parseInt(prepared[i][0][1])) numBetween++
+    }
+    console.log(numBetween)
 }
-findOutput(example)
+findOutput(array4)

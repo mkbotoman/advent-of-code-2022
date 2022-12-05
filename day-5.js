@@ -15,11 +15,16 @@ function findOutput(order,directions) {
     let newOrder = order
     for (let i=0; i<directions.length ; i++) {
         const moves = directions[i][0]
+        let movingGroup = []
         for(let j = 0; j < moves; j++) {
             const movedItem = newOrder[directions[i][1]].shift()
-            newOrder[directions[i][2]].unshift(movedItem)
+            movingGroup.push(movedItem)
+        }
+        while(movingGroup.length > 0) {
+            let item = movingGroup.pop()
+            newOrder[directions[i][2]].unshift(item)
         }
     }
     console.log(newOrder)
 }
-findOutput(exampleOrder,exampleInstructions)
+findOutput(crateOrder,instructions)
